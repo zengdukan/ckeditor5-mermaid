@@ -28,28 +28,28 @@
     "ckeditor5-metadata.json"
   ],
   "dependencies": {
-    "ckeditor5": "^32.0.0",
-    "mermaid": "^8.14.0",
-    "lodash-es": "^4.17.15"
+    "ckeditor5": "^34.0.0",
+    "lodash-es": "^4.17.15",
+    "mermaid": "^8.14.0"
   },
   "devDependencies": {
-    "@ckeditor/ckeditor5-basic-styles": "^32.0.0",
-    "@ckeditor/ckeditor5-clipboard": "^32.0.0",
-    "@ckeditor/ckeditor5-code-block": "^32.0.0",
-    "@ckeditor/ckeditor5-editor-classic": "^32.0.0",
-    "@ckeditor/ckeditor5-engine": "^32.0.0",
-    "@ckeditor/ckeditor5-enter": "^32.0.0",
-    "@ckeditor/ckeditor5-essentials": "^32.0.0",
-    "@ckeditor/ckeditor5-heading": "^32.0.0",
-    "@ckeditor/ckeditor5-inspector": "^3.0.0",
-    "@ckeditor/ckeditor5-link": "^32.0.0",
-    "@ckeditor/ckeditor5-markdown-gfm": "^32.0.0",
-    "@ckeditor/ckeditor5-paragraph": "^32.0.0",
-    "@ckeditor/ckeditor5-typing": "^32.0.0",
-    "@ckeditor/ckeditor5-undo": "^32.0.0",
-    "@ckeditor/ckeditor5-widget": "^32.0.0",
+    "@ckeditor/ckeditor5-basic-styles": "^34.0.0",
+    "@ckeditor/ckeditor5-clipboard": "^34.0.0",
+    "@ckeditor/ckeditor5-code-block": "^34.0.0",
+    "@ckeditor/ckeditor5-editor-classic": "^34.0.0",
+    "@ckeditor/ckeditor5-engine": "^34.0.0",
+    "@ckeditor/ckeditor5-enter": "^34.0.0",
+    "@ckeditor/ckeditor5-essentials": "^34.0.0",
+    "@ckeditor/ckeditor5-heading": "^34.0.0",
+    "@ckeditor/ckeditor5-inspector": "^4.0.0",
+    "@ckeditor/ckeditor5-link": "^34.0.0",
+    "@ckeditor/ckeditor5-markdown-gfm": "^34.0.0",
     "@ckeditor/ckeditor5-package-tools": "^1.0.0-beta.4",
+    "@ckeditor/ckeditor5-paragraph": "^34.0.0",
     "@ckeditor/ckeditor5-theme-lark": ">=32.0.0",
+    "@ckeditor/ckeditor5-typing": "^34.0.0",
+    "@ckeditor/ckeditor5-undo": "^34.0.0",
+    "@ckeditor/ckeditor5-widget": "^34.0.0",
     "eslint": "^7.32.0",
     "eslint-config-ckeditor5": ">=3.1.1",
     "http-server": "^14.1.0",
@@ -58,9 +58,8 @@
     "stylelint": "^13.13.1",
     "stylelint-config-ckeditor5": ">=2.0.1"
   },
-
   "scripts": {
-    "dll:build": "ckeditor5-package-tools dll:build",
+    "dll:build": "webpack",
     "dll:serve": "http-server ./ -o sample/dll.html",
     "lint": "eslint \"**/*.js\" --quiet --ignore-pattern \"build/\"",
     "start": "ckeditor5-package-tools start",
@@ -79,10 +78,5 @@
     "**/*.css": [
       "stylelint --quiet --allow-empty-input"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   }
 }
