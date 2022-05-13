@@ -46,5 +46,7 @@ export default class MermaidPreviewCommand extends Command {
 				writer.setAttribute( 'displayMode', 'preview', mermaidItem );
 			}
 		} );
+
+		return mermaidItem;
 	}
 }

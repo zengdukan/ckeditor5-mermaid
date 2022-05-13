@@ -15,6 +15,7 @@ import Link from '@ckeditor/ckeditor5-link/src/link';
 import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
 import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
 import CKEditorInspector from '@ckeditor/ckeditor5-inspector';
+import SourceEditing from '@ckeditor/ckeditor5-source-editing/src/sourceediting';
 
 import CodeBlock from '@ckeditor/ckeditor5-code-block/src/codeblock';
 import Mermaid from '../src/mermaid';
@@ -31,9 +32,10 @@ ClassicEditor
 			Bold,
 			Italic,
 			CodeBlock,
-			Mermaid
+			Mermaid,
+			SourceEditing
 		],
-		toolbar: [ 'bold', 'italic', 'link', 'undo', 'redo', 'codeBlock', 'mermaid' ],
+		toolbar: [ 'bold', 'italic', 'link', 'undo', 'redo', 'codeBlock', 'mermaid', 'sourceEditing' ],
 		codeBlock: {
 			languages: [
 				{ language: 'plaintext', label: 'Plain text', class: '' },

@@ -26,6 +26,19 @@ export default class MermaidUI extends Plugin {
 	 */
 	init() {
 		this._addButtons();
+		const viewDocument = this.editor.editing.view.document;
+
+		// Handle click on view document and show panel when selection is placed inside the link element.
+		// Keep panel open until selection will be inside the same link element.
+		this.listenTo( viewDocument, 'click', () => {
+			const documentSelection = this.editor.model.document.selection;
+			const selectedElement = documentSelection.getSelectedElement();
+			const isSelectedElementMermaid = selectedElement && selectedElement.name === 'mermaid';
+
+			if ( isSelectedElementMermaid && selectedElement.getAttribute('displayMode') === 'preview') {
+				this._toolBarBtns.get('mermaidSplitView').fire('execute');
+			} 
+		} );
 	}
 
 	/**
@@ -37,9 +50,10 @@ export default class MermaidUI extends Plugin {
 		const editor = this.editor;
 
 		this._addInsertMermaidButton();
-		this._addMermaidInfoButton();
+		// this._addMermaidInfoButton();
+		this._toolBarBtns = new Map();
 		this._createToolbarButton( editor, 'mermaidPreview', 'Preview', previewModeIcon );
-		this._createToolbarButton( editor, 'mermaidSourceView', 'Source view', sourceModeIcon );
+		// this._createToolbarButton( editor, 'mermaidSourceView', 'Source view', sourceModeIcon );
 		this._createToolbarButton( editor, 'mermaidSplitView', 'Split view', splitModeIcon );
 	}
 
@@ -139,11 +153,21 @@ export default class MermaidUI extends Plugin {
 
 			// Execute the command when the button is clicked.
 			command.listenTo( buttonView, 'execute', () => {
-				editor.execute( `${ name }Command` );
+				const mermaidItem = editor.execute( `${ name }Command` );
 				editor.editing.view.scrollToTheSelection();
 				editor.editing.view.focus();
+
+				const mermaidItemViewElement = editor.editing.mapper.toViewElement( mermaidItem );
+				if ( (name === 'mermaidSourceView' || name === 'mermaidSplitView' ) && mermaidItemViewElement ) {
+					const mermaidItemDomElement = editor.editing.view.domConverter.viewToDom( mermaidItemViewElement, document );
+
+					if ( mermaidItemDomElement ) {
+						mermaidItemDomElement.querySelector( '.ck-mermaid__editing-view' ).focus();
+					}
+				}
 			} );
 
+			this._toolBarBtns.set(name, buttonView);
 			return buttonView;
 		} );
 	}

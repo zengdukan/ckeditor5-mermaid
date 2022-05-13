@@ -182,7 +182,16 @@ export default class MermaidEditing extends Plugin {
 				if ( selectedElement !== data.item ) {
 					model.change( writer => writer.setSelection( data.item, 'on' ) );
 				}
+
+				if (data.item.getAttribute('displayMode') === 'preview') {
+					editor.execute( `mermaidSplitViewCommand` );
+				}
 			}, true );
+
+			domElement.addEventListener( 'blur', () => {
+				const model = editor.model;
+				model.change( writer =>  writer.setAttribute( 'displayMode', 'preview', data.item ));
+			});
 
 			return domElement;
 		}

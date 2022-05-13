@@ -46,5 +46,7 @@ export default class MermaidSplitViewCommand extends Command {
 				writer.setAttribute( 'displayMode', 'split', mermaidItem );
 			}
 		} );
+
+		return mermaidItem;
 	}
 }

@@ -46,5 +46,7 @@ export default class MermaidSourceViewCommand extends Command {
 				writer.setAttribute( 'displayMode', 'source', mermaidItem );
 			}
 		} );
+
+		return mermaidItem;
 	}
 }
